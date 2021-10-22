@@ -5,7 +5,7 @@
 typedef int StackEntryType;
 
 typedef struct node{
-    int data;
+    StackEntryType data;
     struct node *next;
 }Node;
 
@@ -49,6 +49,7 @@ void Pop(Stack *s){
         printf("%d",s->top->data);
         np=s->top;
         s->top=np->next; // s->top=s->top>next;
+        s->element--;
         free(np);
     }
 
