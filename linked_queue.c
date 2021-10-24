@@ -3,7 +3,7 @@
 #include<stdbool.h>
 
 typedef int queueElement;
-typedef enum{FALSE,TRUE} boolean;
+typedef enum{FALSE,TRUE} Boolean;
 
 typedef struct node{
     queueElement data;
@@ -11,61 +11,65 @@ typedef struct node{
 }Node;
 
 typedef struct queue{
-    int count;
     Node *front;
     Node *rear;
-    boolean full;
+    queueElement count;
+    Boolean full;
 }Queue;
 
-void createQueue(Queue *q){
-    q->count=0;
+void CreateQueue(Queue *q){
     q->front=q->rear=NULL;
+    q->count=0;
     q->full=FALSE;
 }
 
-boolean IsQueueFull(Queue *q){
-   return q->full;
-
+Boolean IsQueueFull(Queue *q){
+    return q->full;
 }
 
-boolean IsQueueEmpty(Queue *q){
+Boolean IsQueueEmpty(Queue *q){
     return q->count==0;
 }
 
-void insert (Queue *q, queueElement item){
+void Insert(Queue *q,queueElement item)
+{
     Node *np;
-    np= (Node*)malloc(sizeof(Node));
+    np=(Node*)malloc(sizeof(Node));
 
-    if(IsQueueFull(q)){
+    if(np==NULL){
         printf("Queue is full");
+        q->full=TRUE;
         exit(1);
     }else{
         np->data=item;
         np->next=NULL;
         if(IsQueueEmpty(q)){
-            q->rear=q->front=np;
+            q->front=q->rear=np;
+            q->count++;
         }else{
             q->rear->next=np;
             q->rear=np;
+            q->count++;
         }
-        q->count++;
     }
 }
 
 void Remove(Queue *q){
-    Node *np;
     if(IsQueueEmpty(q)){
-        printf("Queue is empty");
+        printf("Queue is Empty");
         exit(1);
+    }else{
+        printf("%d",q->front->data);
+        Node *np;
+        np=q->front;
+        q->front=np->next;
+        if(q->front==NULL){
+            q->rear=NULL;
+
+        }
+        free(np);
+        q->count--;
     }
-    printf("%d",q->front->data);
-    np=q->front;
-    q->front=np->next;
-    if(q->front==NULL){
-        q->rear=NULL;
-    }
-    free(np);
-    q->count--;
 }
 
 void Display(Queue *q){
@@ -77,21 +81,20 @@ void Display(Queue *q){
     }
 }
 
-
 void main(){
-    Queue q;
-    createQueue(&q);
-    for(int i=0;i<10;i++){
-        insert(&q,i+1);
-    }
-    Display(&q);
-    printf("\n\n");
-    Remove(&q);
-    printf("\n");
-    Display(&q);
-    printf("\n\n");
-    Remove(&q);
-    printf("\n");
-    Display(&q);
+        Queue q;
+        CreateQueue(&q);
+        for(int i=0;i<10;i++){
+        Insert(&q,i+1);
+        }
+        Display(&q);
+        printf("\n\n");
+        Remove(&q);
+        printf("\n");
+        Display(&q);
+        printf("\n\n");
+        Remove(&q);
+        printf("\n");
+        Display(&q);
+        printf("\n\n");
 }
-
