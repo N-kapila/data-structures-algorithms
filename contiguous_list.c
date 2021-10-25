@@ -79,8 +79,8 @@ void DeleteList(List *l,int p){
         printf("Given position is not available in the list");
         exit(1);
     }else{
-        for (int i = p-1 ; i < l->count-1; i++) {
-           l->arr[i] = l->arr[i+1];
+        for (int i = p-1; i < l->count-1; i++) {
+                l->arr[i] = l->arr[i+1];
         }
         l->count--;
     }
@@ -111,16 +111,18 @@ void main(){
             InsertLast(&l,i+10);
     }
     Display(&l);
-    printf("\n");
+   /* printf("\n");
     InsertList(&l,3,100);
     Display(&l);
     ReplaceList(&l,6,1500);
     printf("\n");
     Display(&l);
-    DeleteList(&l,2);
+    DeleteList(&l,5);
     printf("\n");
     Display(&l);
     printf("\n");
-    RetriveList(&l,5);
+    RetriveList(&l,5);*/
     printf("\n");
+     DeleteList(&l,5);
+     Display(&l);
 }
