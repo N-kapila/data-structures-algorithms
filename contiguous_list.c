@@ -27,7 +27,6 @@ boolean IsListEmpty(List *l){
 /*int ListSize(List *l)
 {
     return l->count;
-
 }*/
 
 void InsertLast(List *l,listElement item){
@@ -111,7 +110,7 @@ void main(){
             InsertLast(&l,i+10);
     }
     Display(&l);
-   /* printf("\n");
+    printf("\n");
     InsertList(&l,3,100);
     Display(&l);
     ReplaceList(&l,6,1500);
@@ -121,8 +120,6 @@ void main(){
     printf("\n");
     Display(&l);
     printf("\n");
-    RetriveList(&l,5);*/
+    RetriveList(&l,5);
     printf("\n");
-     DeleteList(&l,5);
-     Display(&l);
 }
